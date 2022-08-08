@@ -1,0 +1,46 @@
+create database Test
+
+USE Test
+GO
+CREATE SCHEMA TEST
+
+GO
+CREATE table Test.Persona(
+ID int identity primary key,
+RFC      varchar(13)not null,
+NOMBRE   varchar(50)not null,
+APATERNO varchar(30)not null,
+AMATERNO varchar(30)not null,
+)
+GO
+CREATE TABLE Test.Licencia(
+ID int identity primary key,
+RFC varchar(13)not null,
+NLICENCIA VARCHAR(9) NOT NULL,
+FECHA datetime,
+EXPIRA datetime
+)
+GO
+SELECT * 
+FROM Test.Persona
+GO
+SELECT *
+FROM Test.Licencia
+
+GO
+INSERT INTO Test.Persona(RFC,NOMBRE,APATERNO,AMATERNO) values('LPC93QWERT1 ','Luis','Pena','Cordova')
+INSERT INTO Test.Persona(RFC,NOMBRE,APATERNO,AMATERNO) values('MAA93QWERT2 ','Manuel','Apaterno','Amaterno')
+INSERT INTO Test.Persona(RFC,NOMBRE,APATERNO,AMATERNO) values('AAA93QWERT3 ','Angel','Apaterno','Amaterno')
+INSERT INTO Test.Persona(RFC,NOMBRE,APATERNO,AMATERNO) values('PAA93QWERT4 ','Pablo','Apaterno','Amaterno')
+INSERT INTO Test.Persona(RFC,NOMBRE,APATERNO,AMATERNO) values('WAA93QWERT5 ','Wenceslao','Apaterno','Amaterno')
+
+GO
+INSERt INTO Test.Licencia(RFC,NLICENCIA,FECHA,EXPIRA) VALUES('LPC93QWERT1','123QWERT1','01/01/2022','31/12/2022')
+INSERt INTO Test.Licencia(RFC,NLICENCIA,FECHA,EXPIRA) VALUES('MAA93QWERT2','123QWERT2','01/01/2022','31/12/2022')
+INSERt INTO Test.Licencia(RFC,NLICENCIA,FECHA,EXPIRA) VALUES('AAA93QWERT3','123QWERT3','01/01/2022','31/12/2022')
+INSERt INTO Test.Licencia(RFC,NLICENCIA,FECHA,EXPIRA) VALUES('PAA93QWERT4','123QWERT4','01/01/2022','31/12/2022')
+INSERt INTO Test.Licencia(RFC,NLICENCIA,FECHA,EXPIRA) VALUES('WAA93QWERT5','123QWERT5','01/01/2022','31/12/2022')
+
+SELECT A.NOMBRE AS NOMBRE, A.APATERNO AS APELLIDOPAT, A.AMATERNO AS APELLIDOMAT,A.RFC AS RFC, B.FECHA, B.EXPIRA
+FROM Test.Persona as a inner join Test.Licencia as b on a.RFC = b.RFC
+WHERE A.RFC = 'AAA93QWERT3'
